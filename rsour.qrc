@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/rescr">
+        <file alias="cancell">cancell.svg</file>
+        <file alias="delete_UTask">delete_obj.svg</file>
+        <file alias="ing_accept">ing_accept.svg</file>
+        <file alias="mov_obj">mov_object.svg</file>
+        <file alias="server_db">server_database.svg</file>
+        <file alias="search_find">search_find.svg</file>
+        <file alias="ComodaIcon">comoda.svg</file>
+        <file alias="DesktopIcon">desktop_ref.svg</file>
+        <file alias="RoomIcon">user_homeRoom.svg</file>
+        <file alias="UpdateIcon">update.svg</file>
+        <file alias="Folder">Folder_add.svg</file>
+        <file alias="add_Utask">add_obj.png</file>
+    </qresource>
+</RCC>

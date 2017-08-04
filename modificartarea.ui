@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ModificarTarea</class>
+ <widget class="QMainWindow" name="ModificarTarea">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>422</width>
+    <height>439</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Modificar Tarea</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_22">
+      <item>
+       <widget class="QLabel" name="label_18">
+        <property name="text">
+         <string>Filtrar:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="txtfilter"/>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnSearch">
+        <property name="text">
+         <string>Buscar</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normalon>:/rescr/search_find</normalon>
+         </iconset>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_21">
+      <item>
+       <widget class="QLabel" name="label_17">
+        <property name="text">
+         <string>Tarea:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="cboTask">
+        <property name="maximumSize">
+         <size>
+          <width>480</width>
+          <height>854</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="lblCod">
+        <property name="text">
+         <string>cod</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_19">
+      <item>
+       <widget class="QLabel" name="label_15">
+        <property name="text">
+         <string>Materia:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="cboMat_2"/>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_20">
+      <item>
+       <widget class="QLabel" name="label_16">
+        <property name="text">
+         <string>Descripción:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QTextEdit" name="txtDescrp_2"/>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QLabel" name="lblMProgress">
+        <property name="text">
+         <string>Progreso: </string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSlider" name="sliderProgress">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_12">
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_13">
+          <item>
+           <widget class="QLabel" name="label_10">
+            <property name="text">
+             <string>Grupo:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="chkGrp_2">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_14">
+          <item>
+           <widget class="QLabel" name="label_11">
+            <property name="text">
+             <string>Prioridad:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSpinBox" name="spnPrio_2"/>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_15">
+          <item>
+           <widget class="QLabel" name="label_12">
+            <property name="text">
+             <string>Porcentaje:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QDoubleSpinBox" name="spnPorc_2">
+            <property name="maximum">
+             <double>100.989999999999995</double>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_5">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_16">
+          <item>
+           <widget class="QLabel" name="label_13">
+            <property name="text">
+             <string>Entregar: </string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QDateEdit" name="dtEnt_2">
+            <property name="displayFormat">
+             <string notr="true">dd/MM/yyyy</string>
+            </property>
+            <property name="calendarPopup">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="chbERR_2">
+            <property name="text">
+             <string>RR</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_17">
+          <item>
+           <widget class="QLabel" name="label_14">
+            <property name="text">
+             <string>Adelantar:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QDateEdit" name="dtAd_2">
+            <property name="displayFormat">
+             <string notr="true">dd/MM/yyyy</string>
+            </property>
+            <property name="calendarPopup">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="chbARR_2">
+            <property name="text">
+             <string>RR</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_18">
+      <item>
+       <widget class="QPushButton" name="btnAccept_2">
+        <property name="text">
+         <string>Modificar</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normalon>:/rescr/ing_accept</normalon>
+         </iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnCancelar_2">
+        <property name="text">
+         <string>Cancelar</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normalon>:/rescr/cancell</normalon>
+         </iconset>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+   <zorder></zorder>
+   <zorder></zorder>
+   <zorder>horizontalLayoutWidget</zorder>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>422</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionCopy"/>
+   <addaction name="actionFix_Screen"/>
+   <addaction name="actionH_img"/>
+   <addaction name="actionCompleteUtask"/>
+  </widget>
+  <action name="actionCopy">
+   <property name="icon">
+    <iconset resource="rsour.qrc">
+     <normaloff>:/rescr/mov_obj</normaloff>:/rescr/mov_obj</iconset>
+   </property>
+   <property name="text">
+    <string>Copy</string>
+   </property>
+  </action>
+  <action name="actionFix_Screen">
+   <property name="icon">
+    <iconset resource="rsour.qrc">
+     <normaloff>:/rescr/UpdateIcon</normaloff>:/rescr/UpdateIcon</iconset>
+   </property>
+   <property name="text">
+    <string>Fix Screen</string>
+   </property>
+  </action>
+  <action name="actionH_img">
+   <property name="icon">
+    <iconset resource="rsour.qrc">
+     <normaloff>:/rescr/mov_obj</normaloff>:/rescr/mov_obj</iconset>
+   </property>
+   <property name="text">
+    <string>H_img</string>
+   </property>
+   <property name="toolTip">
+    <string>View Horary</string>
+   </property>
+  </action>
+  <action name="actionCompleteUtask">
+   <property name="icon">
+    <iconset resource="rsour.qrc">
+     <normaloff>:/rescr/ing_accept</normaloff>:/rescr/ing_accept</iconset>
+   </property>
+   <property name="text">
+    <string>CompleteUtask</string>
+   </property>
+   <property name="toolTip">
+    <string>100 in task</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="rsour.qrc"/>
+ </resources>
+ <connections/>
+</ui>
