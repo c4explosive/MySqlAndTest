@@ -24,7 +24,7 @@ BuscarTarea::BuscarTarea(QWidget *parent) :
     ui->dtAd->setDate(QDate::currentDate());
     multiplesFxs::updateDB(ui->cboMat,"Materias","Materia");
     ui->chbNot100->setChecked(true);
-    filter=new uFilter();
+    filter=new uFilter(this);
 
     multiplesFxs::fixmyScreen(ui->centralwidget);
 

@@ -13,6 +13,7 @@ class uFilter:public uTask
 {
 private:
     QString uQuery;
+    ApiQServer *aqs;
     void ufPrepare();
     void ufPrepare(QList<QString>);
     public:
@@ -23,7 +24,7 @@ private:
     bool FEntrega;
     bool FAdelantar;
 
-    uFilter();
+    uFilter(QObject *parent);
     bool getFMateria() const;
     void setFMateria(bool value);
     bool getFN100() const;

@@ -1,6 +1,8 @@
 #include "ufilter.h"
 
 
+
+
 bool uFilter::getFMateria() const
 {
     return FMateria;
@@ -61,10 +63,10 @@ void uFilter::setFAdelantar(bool value)
     FAdelantar = value;
 }
 
-uFilter::uFilter()
+uFilter::uFilter(QObject * parent)
 {
-
-}
+    aqs = new ApiQServer("127.0.0.1",parent);
+} //BUG: aqs is declared 2 times (see multiplesfxs).
 
 void uFilter::ufPrepare()
 {
@@ -126,29 +128,17 @@ void uFilter::ufPrepare(QList<QString> slist) //Semanal
 void uFilter::getResults(QTableView * widget) //BUG?: This should be in a class...
 {
     ufPrepare();
-    QSqlQueryModel * qsmod = new QSqlQueryModel();
     QString queryS;
     queryS=uQuery;
-    //qDebug()<<"SQL:: "<<queryS;
-    QSqlQuery * query = new QSqlQuery();
-    query->prepare(queryS);
-    //qDebug()<<"QUERY::"<<
-    query->exec();
-    qsmod->setQuery(*query);
-    widget->setModel(qsmod);
+    aqs->doQueries(queryS);
+    widget->setModel(aqs->getModel());
 }
 
 void uFilter::getResults(QTableView * widget, QList<QString> slist) //BUG?: This should be in a class...
 {
     ufPrepare(slist);
-    QSqlQueryModel * qsmod = new QSqlQueryModel();
     QString queryS;
     queryS=uQuery;
-    //qDebug()<<"SQL:: "<<queryS;
-    QSqlQuery * query = new QSqlQuery();
-    query->prepare(queryS);
-    //qDebug()<<"QUERY::"<<
-    query->exec();
-    qsmod->setQuery(*query);
-    widget->setModel(qsmod);
+    aqs->doQueries(queryS);
+    widget->setModel(aqs->getModel());
 }

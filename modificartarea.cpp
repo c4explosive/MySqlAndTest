@@ -11,7 +11,7 @@ ModificarTarea::ModificarTarea(QWidget *parent) :
     ui(new Ui::ModificarTarea)
 {
     ui->setupUi(this);
-    task = new uTask();
+    task = new uTask(this);
     multiplesFxs::updateDB(ui->cboTask,"uTask","DESCRP");
     multiplesFxs::updateDB(ui->cboMat_2,"Materias","Materia");
     ui->dtEnt_2->setDate(QDate::currentDate());

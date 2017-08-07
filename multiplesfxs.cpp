@@ -23,6 +23,7 @@
 
 
 QSqlDatabase qsldb; //Esto NO se hace!!
+ApiQServer *aqs;
 
 multiplesFxs::multiplesFxs()
 {
@@ -30,16 +31,18 @@ multiplesFxs::multiplesFxs()
 
 void multiplesFxs::whatWindow(QWidget * parent, int var)
 {
-    if (!qsldb.isOpen()) //Verifica si la base de datos está conectada.
+    if (qsldb.isOpen()) //Verifica si la base de datos está conectada.
     {
+
+        qDebug()<<"NEW::API::: "<<aqs->getIndividual();
         QMessageBox::critical(parent,"Error en Base de Datos","Base de Datos no conectada, Conecte la base de datos primero.");
         dbConnect(parent,"127.0.0.1");
         //ipchoose * w = new ipchoose();
         //w->show();
     }
-
     else
     {
+        dbConnect(parent,"127.0.0.1");
         switch (var)
         {
         case multiplesFxs::AGREGARUTASK:
@@ -90,51 +93,26 @@ void multiplesFxs::whatWindow(QWidget * parent, int var)
 
 void multiplesFxs::dbConnect(QWidget * parent,QString IPaddr)
 {
-    //qsldb = QSqlDatabase::addDatabase("QSQLITE");
-    qsldb = QSqlDatabase::addDatabase("QMYSQL");
-    //qsldb.setDatabaseName(address);
-    qsldb.setHostName("127.0.0.1");
-    qsldb.setDatabaseName("uTasks");
-    //qsldb.setHostName(IPaddr);
-    qsldb.setUserName("root");
-    qsldb.setPassword("1234");
-    qsldb.open();
-    //QSqlError qsqerror;
-    //qsqerror = qsldb.lastError();
-    //qDebug()<<qsldb.lastError(); //Verificar errores
-    //qDebug()<<qsldb.isOpen();
+    aqs = new ApiQServer(IPaddr,parent);
+        /*QMessageBox * msg = new QMessageBox(parent);
+        msg->information(parent,"Estatus de la Base de Datos",aqs->getIndividual());*/
 
-    //qDebug()<<"QDriver:: "<<qsldb.isDriverAvailable("QMYSQL");
-    if(qsldb.isOpen())
-    {
-        QMessageBox * msg = new QMessageBox(parent);
-        msg->information(parent,"Estatus de la Base de Datos","Conectado!");
-    }
-    else
-    {
-        QMessageBox * msg = new QMessageBox(parent);
-        msg->critical(parent,"Estatus de la Base de Datos","No Conectado. IP fallida o incorrecta.");
-    }
 }
 
 void multiplesFxs::updateDB(QComboBox * cbo, QString Table, QString column)
 {
-    QSqlQueryModel * qsmod = new QSqlQueryModel();
     QString queryS;
     if(Table!="uTask")
         queryS="SELECT "+column+" FROM "+Table+";";
     else
-        queryS="SELECT "+column+" FROM "+Table+" WHERE PORC<100;";
-    QSqlQuery * query = new QSqlQuery();
-    query->prepare(queryS);
-    query->exec();
-    qsmod->setQuery(*query);
-    cbo->setModel(qsmod);
+        queryS="SELECT "+column+" FROM "+Table+" WHERE PORC<100";
+    qDebug()<<"THE::QUERY::"<<queryS;
+    aqs->doQueries(queryS);
+    cbo->setModel(aqs->getModel());
 }
 
 void multiplesFxs::updateDB(QComboBox *cbo, QString Table, QString column, QString filter)
 {
-    QSqlQueryModel * qsmod = new QSqlQueryModel();
     QString queryS;
     if(Table != "uTask")
         queryS="SELECT "+column+" FROM "+Table+" WHERE "+column+" LIKE "+"'%"+filter+"%'"+";";
@@ -142,16 +120,13 @@ void multiplesFxs::updateDB(QComboBox *cbo, QString Table, QString column, QStri
         queryS="SELECT "+column+" FROM "+Table+" WHERE "+column+" LIKE "+"'%"+filter+"%'"+" AND PORC<100;";
 
     QSqlQuery * query = new QSqlQuery();
-    query->prepare(queryS);
-    query->exec();
-    qsmod->setQuery(*query);
-    cbo->setModel(qsmod);
+    aqs->doQueries(queryS);
+    cbo->setModel(aqs->getModel());
 
 }
 
 void multiplesFxs::updateDB(QComboBox *cbo, QString Table, QString column, QString column2, QString filter)
 {
-    QSqlQueryModel * qsmod = new QSqlQueryModel();
     QString queryS;
     if(Table != "uTask")
         queryS="SELECT "+column+" FROM "+Table+" WHERE "+column+" LIKE "+"'%"+filter+"%' OR "+column2+" LIKE '%"+filter+"%';";
@@ -159,39 +134,25 @@ void multiplesFxs::updateDB(QComboBox *cbo, QString Table, QString column, QStri
         queryS="SELECT "+column+" FROM "+Table+" WHERE "+column+" LIKE "+"'%"+filter+"%' OR "+column2+" LIKE '%"+filter+"%';";
         //queryS="SELECT "+column+" FROM "+Table+" WHERE "+column+" LIKE "+"'%"+filter+"%' OR "+column2+" LIKE '%"+filter+"%' AND PORC<100;";
         //BUG: Why the discrimination?, for this, can't modify 100% task...
-    QSqlQuery * query = new QSqlQuery();
-    query->prepare(queryS);
-    query->exec();
-    qsmod->setQuery(*query);
-    cbo->setModel(qsmod);
+    aqs->doQueries(queryS);
+    cbo->setModel(aqs->getModel());
 
 }
 
 QString multiplesFxs::getID(QString Table, QString id_col, QString col, QString qVal)
 {
-    QSqlQuery * query = new QSqlQuery();
     QString queryS = "SELECT "+id_col+" FROM "+Table+" WHERE "+col+" LIKE '%"+qVal+"%';";
-    query->prepare(queryS);
-    query->exec();
-    QString result;
-    while (query->next())
-    {
-        result=query->value(0).toString();
-    }
+    aqs->doQueries(queryS);
+    QString result=aqs->getIndividual();
     return result;
 }
 
 QString multiplesFxs::getAtribute(QString Table, QString col, QString id_col, QString id )
 {
-    QSqlQuery * query = new QSqlQuery();
     QString queryS = "SELECT "+col+" FROM "+Table+" WHERE "+id_col+" LIKE '%"+id+"%';";
-    query->prepare(queryS);
-    query->exec();
     QString result;
-    while (query->next())
-    {
-        result=query->value(0).toString();
-    }
+    aqs->doQueries(queryS);
+    result=aqs->getIndividual();
     return result;
 
 }

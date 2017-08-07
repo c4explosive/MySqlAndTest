@@ -92,10 +92,17 @@ void uTask::setDirectorio(const QString &value)
     Directorio = value;
 }
 
+uTask::uTask(QObject* parent)
+{
+    cod=getCode();
+    aqs = new ApiQServer("127.0.0.1",parent);
+}
+
 uTask::uTask()
 {
     cod=getCode();
 }
+
 
 QString uTask::boolToText(bool data)
 {
@@ -115,42 +122,36 @@ bool uTask::TextToBool(QString data)
 
 void uTask::updateITask(QString column, QString value)
 {
-    QSqlQuery * query = new QSqlQuery();
     QString queryS;
     queryS="UPDATE uTask"
             " SET "+column+"='"+value+"'"+
             " WHERE COD='"+cod+"';";
     //qDebug()<<"SQL::"<<queryS;
-    query->prepare(queryS);
-    query->exec();
-
+    aqs->doQueries(queryS);
+    aqs->postQuery();
 }
 
 void uTask::updateITask(QString column, int value)
 {
-    QSqlQuery * query = new QSqlQuery();
     QString queryS;
     queryS="UPDATE uTask"
             " SET "+column+"="+QString::number(value)+
             " WHERE COD='"+cod+"';";
     //qDebug()<<"SQL::"<<queryS;
-    query->prepare(queryS);
-    query->exec();
-
+    aqs->doQueries(queryS);
+    aqs->postQuery();
 }
 
 
 void uTask::updateITask(QString column, double value)
 {
-    QSqlQuery * query = new QSqlQuery();
     QString queryS;
     queryS="UPDATE uTask"
             " SET "+column+"="+QString::number(value)+
             " WHERE COD='"+cod+"';";
     //qDebug()<<"SQL::"<<queryS;
-    query->prepare(queryS);
-    query->exec();
-
+    aqs->doQueries(queryS);
+    aqs->postQuery();
 }
 void uTask::updateTask()
 {
@@ -167,25 +168,22 @@ void uTask::updateTask()
 
 void uTask::putTask()
 {
-    QSqlQuery * query = new QSqlQuery();
     QString queryS;
     queryS="INSERT INTO uTask (COD,MATERIA,DESCRP,GRUPO,PRIORITY,F_COMP,F_DO,PORC)"
            " VALUES('"+cod+"','"+Materia+"','"+Descripcion+"','"+boolToText(Grupo)+
             "',"+QString::number(Prioridad)+",'"+F_Comp+"','"+F_Do+"',"+QString::number(Porc)+");";
     //qDebug()<<"SQL::"<<queryS;
-    query->prepare(queryS);
-    query->exec();
+    aqs->doQueries(queryS);
+    aqs->postQuery();
 }
 
 void uTask::deleteTask()
 {
-    QSqlQuery * query = new QSqlQuery();
     QString queryS;
     queryS="DELETE FROM uTask WHERE COD LIKE '%"+cod+"%'";
     //qDebug()<<"SQL::"<<queryS;
-    query->prepare(queryS);
-    query->exec();
-
+    aqs->doQueries(queryS);
+    aqs->postQuery();
 }
 
 void uTask::prepareRObj(QString descr)

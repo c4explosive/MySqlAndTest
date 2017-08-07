@@ -15,7 +15,7 @@ WeekView::WeekView(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->dtEnt->setDate(QDate::currentDate());
-    filter=new uFilter();
+    filter=new uFilter(this);
     multiplesFxs::updateDB(ui->cboMat,"Materias","Materia");
     ui->chbNot100->setChecked(true);
     multiplesFxs::fixmyScreen(ui->centralwidget);

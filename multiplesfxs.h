@@ -6,6 +6,7 @@
 #include <QTableView>
 #include <QString>
 
+#include "apiqserver.h"
 
 class multiplesFxs
 {

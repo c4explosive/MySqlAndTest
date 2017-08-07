@@ -6,6 +6,7 @@
 
 #include "entitiesfxs.h"
 #include "multiplesfxs.h"
+#include "apiqserver.h"
 
 class uTask : EntitiesFxs
 {
@@ -13,6 +14,7 @@ private:
     QString cod;
     bool Grupo;
     double Porc;
+    ApiQServer * aqs;
     QString Directorio;
     void updateITask(QString column, int value);
     void updateITask(QString column, QString value);
@@ -26,6 +28,7 @@ private:
 
 
     uTask();
+    uTask(QObject *);
     QString getCod() const;
     void setCod(const QString &value);
     QString getMateria() const;

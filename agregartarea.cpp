@@ -10,11 +10,13 @@ AgregarTarea::AgregarTarea(QWidget *parent) :
     ui(new Ui::AgregarTarea)
 {
     ui->setupUi(this);
-    task=new uTask();
+    task=new uTask(this);
     ui->lblidObj->setText(task->getCod());
     ui->dtEnt->setDate(QDate::currentDate());
     ui->dtAd->setDate(QDate::currentDate());
     multiplesFxs::updateDB(ui->cboMat,"Materias","Materia");
+    //multiplesFxs::updateDB(ui->cboMat,"uTask","DESCRP");
+
     multiplesFxs::fixmyScreen(ui->centralwidget);
     QScreen *s = QApplication::screens().at(0);
     connect(s,SIGNAL(geometryChanged(const QRect)),

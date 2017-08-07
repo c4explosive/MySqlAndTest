@@ -10,7 +10,7 @@ EliminarTarea::EliminarTarea(QWidget *parent) :
     ui(new Ui::EliminarTarea)
 {
     ui->setupUi(this);
-    task = new uTask();
+    task = new uTask(this);
     multiplesFxs::updateDB(ui->cboTask,"uTask","DESCRP");
     multiplesFxs::fixmyScreen(ui->centralwidget);
     QScreen *s = QApplication::screens().at(0);

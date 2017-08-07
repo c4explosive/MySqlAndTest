@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui sql svg androidextras
+QT       += core gui sql svg androidextras network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -25,7 +25,11 @@ SOURCES += main.cpp\
     buscartarea.cpp \
     androidfiledialog.cpp \
     view_horary.cpp \
-    weekview.cpp
+    weekview.cpp \
+    apiqserver.cpp \
+    http_manager.cpp \
+    json_utilities.cpp \
+    qjsontablemodel.cpp
 
 HEADERS  += mainwindow.h \
     snd.h \
@@ -39,7 +43,11 @@ HEADERS  += mainwindow.h \
     buscartarea.h \
     androidfiledialog.h \
     view_horary.h \
-    weekview.h
+    weekview.h \
+    apiqserver.h \
+    http_manager.h \
+    json_utilities.h \
+    qjsontablemodel.h
 
 FORMS    += mainwindow.ui \
     snd.ui \
